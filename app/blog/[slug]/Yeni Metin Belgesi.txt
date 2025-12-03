@@ -1,0 +1,98 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Contact from "@/components/Contact";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, Calendar, Clock, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
+
+// Temsili Veri (Gerçek hayatta veritabanından gelir)
+const blogData: Record<string, any> = {
+  "yapay-zeka-ve-gelecek": {
+    title: "Yapay Zeka: İş Dünyasını Nasıl Değiştiriyor?",
+    category: "Yapay Zeka",
+    date: "25 Kasım 2024",
+    readTime: "5 dk",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
+    content: `
+      <p class="mb-6 text-lg leading-relaxed text-gray-300">Yapay zeka (AI), bilim kurgu filmlerinden çıkıp toplantı odalarımıza girdi. Artık sadece bir "gelecek teknolojisi" değil, bugünün rekabet avantajı. Peki şirketler buna hazır mı?</p>
+      
+      <h3 class="text-2xl font-bold text-white mb-4 mt-8">Otomasyonun Gücü</h3>
+      <p class="mb-6 text-gray-400">Tekrarlayan işleri yapay zekaya devretmek, insan kaynağını daha yaratıcı süreçlere yönlendiriyor. Özellikle veri analizi, müşteri hizmetleri (chatbotlar) ve lojistik planlamada AI devrim yaratıyor.</p>
+      
+      <blockquote class="border-l-4 border-brand-yellow pl-6 py-2 my-8 italic text-xl text-white bg-white/5 rounded-r-lg">
+        "Yapay zeka insanların yerini almayacak; ancak yapay zeka kullanan insanlar, kullanmayanların yerini alacak."
+      </blockquote>
+
+      <h3 class="text-2xl font-bold text-white mb-4 mt-8">ON7 Olarak Yaklaşımımız</h3>
+      <p class="mb-6 text-gray-400">Biz müşterilerimize "yapay zeka kullanın" demiyoruz; "sorununuzu yapay zeka ile çözelim" diyoruz. Okinar sistemimizde kullandığımız öğrenci analiz algoritmaları buna en büyük örnektir.</p>
+    `
+  }
+};
+
+export default function BlogPost({ params }: { params: { id: string } }) {
+  // Varsayılan olarak ilk yazıyı çekelim (Hata vermemesi için)
+  const post = blogData["yapay-zeka-ve-gelecek"]; 
+
+  return (
+    <main className="min-h-screen bg-black text-white selection:bg-brand-yellow selection:text-black font-sans">
+      <Navbar />
+
+      {/* HEADER IMAGE */}
+      <div className="relative h-[50vh] w-full mt-20">
+        <Image src={post.image} alt={post.title} fill className="object-cover opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+        
+        <div className="absolute bottom-0 left-0 w-full p-6 md:p-12">
+            <div className="container mx-auto max-w-4xl">
+                <Link href="/blog" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors text-sm font-bold tracking-wider">
+                    <ArrowLeft size={16} /> TÜM YAZILAR
+                </Link>
+                <div className="flex items-center gap-4 mb-4">
+                    <span className="bg-brand-yellow text-black px-3 py-1 rounded text-xs font-bold uppercase">{post.category}</span>
+                </div>
+                <h1 className="text-3xl md:text-5xl font-black leading-tight mb-6">{post.title}</h1>
+                <div className="flex items-center gap-6 text-sm text-gray-400 font-mono border-t border-white/10 pt-6">
+                    <span className="flex items-center gap-2"><Calendar size={16} className="text-brand-yellow"/> {post.date}</span>
+                    <span className="flex items-center gap-2"><Clock size={16} className="text-brand-yellow"/> {post.readTime} Okuma Süresi</span>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 py-16 grid lg:grid-cols-[1fr_300px] gap-12 max-w-6xl">
+        
+        {/* İÇERİK ALANI */}
+        <article className="prose prose-invert prose-lg max-w-none">
+            {/* HTML İçeriği Güvenli Şekilde Basıyoruz */}
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        </article>
+
+        {/* SAĞ SIDEBAR (PAYLAŞ & TAGS) */}
+        <aside className="hidden lg:block">
+            <div className="sticky top-32 space-y-8">
+                <div className="bg-zinc-900 border border-white/10 rounded-xl p-6">
+                    <h4 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Paylaş</h4>
+                    <div className="flex gap-2">
+                        <button className="p-3 bg-black border border-white/10 rounded hover:border-brand-yellow hover:text-brand-yellow transition-colors"><Twitter size={20}/></button>
+                        <button className="p-3 bg-black border border-white/10 rounded hover:border-brand-yellow hover:text-brand-yellow transition-colors"><Linkedin size={20}/></button>
+                        <button className="p-3 bg-black border border-white/10 rounded hover:border-brand-yellow hover:text-brand-yellow transition-colors"><Facebook size={20}/></button>
+                        <button className="p-3 bg-black border border-white/10 rounded hover:border-brand-yellow hover:text-brand-yellow transition-colors"><Share2 size={20}/></button>
+                    </div>
+                </div>
+
+                <div className="bg-brand-yellow/10 border border-brand-yellow/20 rounded-xl p-6">
+                    <h4 className="text-brand-yellow font-bold mb-2">Bülten</h4>
+                    <p className="text-sm text-gray-400 mb-4">Yeni makalelerden haberdar olmak için abone olun.</p>
+                    <input type="email" placeholder="E-posta adresiniz" className="w-full bg-black border border-white/10 rounded p-2 text-sm text-white mb-2 focus:border-brand-yellow outline-none" />
+                    <button className="w-full bg-brand-yellow text-black font-bold py-2 rounded text-sm hover:bg-white transition-colors">Abone Ol</button>
+                </div>
+            </div>
+        </aside>
+
+      </div>
+
+      <Contact />
+      <Footer />
+    </main>
+  );
+}
