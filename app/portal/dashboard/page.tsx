@@ -1,27 +1,11 @@
 "use client";
-import { useState, ChangeEvent, ReactNode } from "react";
-import {
-  LayoutDashboard,
-  PenTool,
-  Users,
-  Settings,
-  LogOut,
-  Smartphone,
-  Monitor,
-  Tablet,
-  Save,
-  Wand2,
-  GripVertical,
-  ChevronRight,
-  Globe,
-  Eye,
-  Layers,
-  Palette,
-  Image as ImageIcon,
-  Upload,
-  Search,
-  X,
-  RotateCw,
+import { useState } from "react";
+import type { ChangeEvent, ReactNode } from "react";
+import { 
+  LayoutDashboard, PenTool, Users, Settings, LogOut, 
+  Smartphone, Monitor, Tablet, Save, Wand2, GripVertical, 
+  ChevronRight, Globe, Eye, Layers, Palette, Image as ImageIcon, 
+  Upload, Search, X, RotateCw 
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -40,7 +24,7 @@ type NavItemProps = {
 type InputGroupProps = {
   label: string;
   value: string;
-  onChange: (v: string) => void;
+  onChange: (value: string) => void;
   remix?: () => void;
   isRemixing?: boolean;
   textarea?: boolean;
@@ -63,30 +47,28 @@ export default function Dashboard() {
       title: "GELECEĞİ KODLUYORUZ.",
       desc: "ON7 Yazılım; Hacettepe Teknokent'te geliştirdiği Okinar altyapısı ve kurumsal çözümlerle teknolojinin sınırlarını zorlar.",
       btn: "Projemi Başlat",
-      image:
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
     },
     about: {
       title: "Hikayemiz & Vizyonumuz",
-      mission:
-        "Yapay zeka ve IoT tabanlı çözümlerimizle Türkiye'nin teknoloji ihracatında öncü rol oynamak.",
+      mission: "Yapay zeka ve IoT tabanlı çözümlerimizle Türkiye'nin teknoloji ihracatında öncü rol oynamak.",
       stats_1: "50+ Proje",
-      stats_2: "10K+ Kullanıcı",
+      stats_2: "10K+ Kullanıcı"
     },
     okinar: {
       headline: "Eğitimin Dijital Dönüşümü",
       subtext: "Zoom gerektirmeyen yerli video konferans sistemi.",
-      btn: "Demo İste",
+      btn: "Demo İste"
     },
     contact: {
       email: "info@on7yazilim.com",
       phone: "+90 (312) 000 00 00",
-      address: "Hacettepe Teknokent, Ankara",
+      address: "Hacettepe Teknokent, Ankara"
     },
     seo: {
       title: "ON7 Yazılım | Ankara",
-      desc: "Hacettepe Teknokent merkezli lider yazılım firması.",
-    },
+      desc: "Hacettepe Teknokent merkezli lider yazılım firması."
+    }
   });
 
   // AI REMIX (SİMÜLASYON)
@@ -113,7 +95,7 @@ export default function Dashboard() {
   };
 
   // Renkler
-  const colors: Record<string, string> = {
+  const colors: any = {
     yellow: "text-[#FFD700] border-[#FFD700] bg-[#FFD700]",
     blue: "text-blue-500 border-blue-500 bg-blue-500",
     purple: "text-purple-500 border-purple-500 bg-purple-500",
@@ -122,6 +104,7 @@ export default function Dashboard() {
 
   return (
     <div className="h-screen bg-[#050505] text-white font-sans flex overflow-hidden">
+      
       {/* SOL SIDEBAR */}
       <aside className="w-20 lg:w-64 border-r border-white/10 bg-[#0a0a0a] flex flex-col z-20 flex-shrink-0">
         <div className="h-16 flex items-center justify-center lg:justify-start lg:px-6 border-b border-white/10">
@@ -161,6 +144,7 @@ export default function Dashboard() {
 
       {/* ANA ALAN */}
       <main className="flex-1 flex flex-col min-w-0 relative">
+        
         {/* HEADER */}
         <header className="h-16 border-b border-white/10 bg-[#0a0a0a] flex items-center justify-between px-6 z-20">
           <div className="flex items-center gap-4">
@@ -211,9 +195,7 @@ export default function Dashboard() {
           <button
             onClick={handleSave}
             className={`px-6 py-2 rounded-lg font-bold text-black flex items-center gap-2 transition-all ${
-              isSaving
-                ? "bg-gray-500"
-                : colors[themeColor].split(" ")[2]
+              isSaving ? "bg-gray-500" : colors[themeColor].split(" ")[2]
             }`}
           >
             {isSaving ? (
@@ -227,6 +209,7 @@ export default function Dashboard() {
         </header>
 
         <div className="flex-1 flex overflow-hidden">
+          
           {/* --- SOL PANEL: BLOKLAR --- */}
           <div className="w-72 bg-[#0c0c0e] border-r border-white/10 flex flex-col overflow-y-auto custom-scrollbar">
             <div className="p-4 border-b border-white/10 bg-zinc-900/30">
@@ -235,12 +218,13 @@ export default function Dashboard() {
               </h3>
             </div>
             <div className="p-2 space-y-1">
+              {/* GÜNCELLENMİŞ LİSTE */}
               {[
                 { id: "hero", label: "Ana Ekran (Hero)" },
                 { id: "about", label: "Hakkımızda / Vizyon" },
                 { id: "okinar", label: "Okinar Vitrin" },
                 { id: "contact", label: "İletişim Bilgileri" },
-                { id: "seo", label: "SEO & Metadata" },
+                { id: "seo", label: "SEO & Metadata" }
               ].map((item) => (
                 <div
                   key={item.id}
@@ -264,7 +248,7 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-
+            
             {/* Tema */}
             <div className="p-6 mt-auto border-t border-white/10">
               <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
@@ -307,6 +291,7 @@ export default function Dashboard() {
             >
               {/* SİTE İÇERİĞİ (LIVE PREVIEW) */}
               <div className="w-full h-full bg-black overflow-y-auto custom-scrollbar relative group/preview">
+                
                 {/* Navbar */}
                 <div className="h-16 flex items-center justify-between px-6 sticky top-0 bg-black/80 backdrop-blur-md z-50 border-b border-white/10">
                   <div className="font-black text-white">
@@ -321,9 +306,7 @@ export default function Dashboard() {
                 <div
                   id="hero"
                   className={`relative py-20 px-6 text-center border-b border-white/5 ${
-                    selectedBlock === "hero"
-                      ? "ring-2 ring-brand-yellow inset-0"
-                      : ""
+                    selectedBlock === "hero" ? "ring-2 ring-brand-yellow inset-0" : ""
                   }`}
                 >
                   <div className="absolute inset-0 z-[-1]">
@@ -349,9 +332,7 @@ export default function Dashboard() {
                 <div
                   id="about"
                   className={`py-16 px-6 bg-zinc-900/30 border-b border-white/5 text-center ${
-                    selectedBlock === "about"
-                      ? "ring-2 ring-brand-yellow"
-                      : ""
+                    selectedBlock === "about" ? "ring-2 ring-brand-yellow" : ""
                   }`}
                 >
                   <h2 className="text-2xl font-bold mb-4 text-white">
@@ -370,9 +351,7 @@ export default function Dashboard() {
                 <div
                   id="okinar"
                   className={`py-16 px-6 bg-black border-b border-white/5 text-center ${
-                    selectedBlock === "okinar"
-                      ? "ring-2 ring-brand-yellow"
-                      : ""
+                    selectedBlock === "okinar" ? "ring-2 ring-brand-yellow" : ""
                   }`}
                 >
                   <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">
@@ -393,14 +372,10 @@ export default function Dashboard() {
                 <div
                   id="contact"
                   className={`py-10 px-6 bg-zinc-900 text-center ${
-                    selectedBlock === "contact"
-                      ? "ring-2 ring-brand-yellow"
-                      : ""
+                    selectedBlock === "contact" ? "ring-2 ring-brand-yellow" : ""
                   }`}
                 >
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    İletişim
-                  </h3>
+                  <h3 className="text-xl font-bold text-white mb-4">İletişim</h3>
                   <div className="text-sm text-gray-400 space-y-1">
                     <p>{content.contact.address}</p>
                     <p>{content.contact.email}</p>
@@ -415,9 +390,7 @@ export default function Dashboard() {
           <div className="w-80 bg-[#0c0c0e] border-l border-white/10 p-6 overflow-y-auto custom-scrollbar">
             <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-6 flex items-center gap-2">
               <PenTool size={14} /> Düzenle:{" "}
-              <span className="text-white">
-                {selectedBlock.toUpperCase()}
-              </span>
+              <span className="text-white">{selectedBlock.toUpperCase()}</span>
             </h3>
 
             {/* HERO EDİTÖRÜ */}
@@ -460,9 +433,7 @@ export default function Dashboard() {
                 />
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-white">
-                    Arka Plan
-                  </label>
+                  <label className="text-xs font-bold text-white">Arka Plan</label>
                   <div
                     className="h-20 bg-zinc-900 border border-white/10 rounded-lg flex items-center justify-center cursor-pointer hover:border-brand-yellow transition-colors"
                     onClick={() => setShowMediaLib(true)}
@@ -607,9 +578,7 @@ export default function Dashboard() {
                     {content.seo.title}
                   </div>
                   <div className="text-[#202124] text-xs flex items-center gap-1">
-                    <span className="text-green-500">
-                      https://on7yazilim.com
-                    </span>
+                    <span className="text-green-500">https://on7yazilim.com</span>
                   </div>
                   <div className="text-gray-400 text-xs mt-1 line-clamp-2">
                     {content.seo.desc}
@@ -677,7 +646,7 @@ function NavItem({ icon, label, active, onClick, badge }: NavItemProps) {
       onClick={onClick}
       className={`w-full flex items-center justify-between p-2.5 rounded-lg transition-all group ${
         active
-          ? "bg.white/10 text-white font-bold bg-white/10"
+          ? "bg-white/10 text-white font-bold"
           : "text-gray-400 hover:text-white hover:bg-white/5"
       }`}
     >
